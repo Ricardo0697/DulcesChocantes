@@ -71,6 +71,7 @@ const App = () => {
       checkForColumnOfFour()
       checkForColumnOfThree()
       checkForRowOfThree()
+      checkForRowOfFour()
       setCurrentColorArrangement([...currentColorArrangement])
     }, 100);
     return () => clearInterval(timer)
