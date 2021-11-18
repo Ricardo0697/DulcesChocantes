@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 const width = 8;
-// const height = 800;
 const candyColors = ['blue', 'red', 'black', 'yellow', 'purple', 'orange', 'green', 'brown'];
 const App = () => {
   const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
   const checkForColumnOfFour = () => {
     for (let i = 0; i < 40; i++) {
-      const columnOfFour = [i, i + width, i + width * 2 , i + width * 3]
+      const columnOfFour = [i, i + width, i + width * 2, i + width * 3]
       const decidedColor = currentColorArrangement[i];
       if (columnOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
         columnOfFour.forEach(square => currentColorArrangement[square] = '')
@@ -15,10 +14,10 @@ const App = () => {
   }
   const checkForRowOfFour = () => {
     for (let i = 0; i < 40; i++) {
-      const rowOfFour = [i, i + 1 , i + 2 , 1 + 3]
+      const rowOfFour = [i, i + 1, i + 2, 1 + 3]
       const decidedColor = currentColorArrangement[i];
-      const noValid = [6,7,14,15,22,23,30,31,38,39,46,47,54,55,64,65]
-      if(noValid.includes(i)) continue
+      const noValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 64, 65]
+      if (noValid.includes(i)) continue
       if (rowOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
         rowOfFour.forEach(square => currentColorArrangement[square] = '')
       }
@@ -26,10 +25,10 @@ const App = () => {
   }
   const checkForRowOfThree = () => {
     for (let i = 0; i < 65; i++) {
-      const rowOfThree = [i, i + 1 , i + 2]
+      const rowOfThree = [i, i + 1, i + 2]
       const decidedColor = currentColorArrangement[i];
-      const noValid = [6,7,14,15,22,23,30,31,38,39,46,47,54,55,64,65]
-      if(noValid.includes(i)) continue
+      const noValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 64, 65]
+      if (noValid.includes(i)) continue
       if (rowOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
         rowOfThree.forEach(square => currentColorArrangement[square] = '')
       }
@@ -60,7 +59,6 @@ const App = () => {
     setCurrentColorArrangement(randomColorArrangement)
     // mustra el codigo de colores que toca en la partida 
     // console.log(randomColorArrangement);
-
   }
   useEffect(() => {
     createBoard()
@@ -76,10 +74,8 @@ const App = () => {
     }, 100);
     return () => clearInterval(timer)
 
-  }, [checkForColumnOfThree , checkForColumnOfFour , checkForRowOfFour,  checkForRowOfThree , currentColorArrangement])
-  
-  // createBoard()
-  console.log(currentColorArrangement)
+  }, [checkForColumnOfThree, checkForColumnOfFour, checkForRowOfFour, checkForRowOfThree, currentColorArrangement])
+
   return (
     <div className="App">
       <div className="game">
