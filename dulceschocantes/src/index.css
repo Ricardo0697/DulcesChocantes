@@ -5,8 +5,8 @@
 }
 
 .game{
-  width: 400px;
-  height: 400px;
+  width: 560px;
+  height: 560px;
   display: flex;
   flex-wrap: wrap;
 }
