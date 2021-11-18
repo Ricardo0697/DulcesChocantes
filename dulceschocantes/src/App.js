@@ -76,7 +76,7 @@ const App = () => {
     }, 100);
     return () => clearInterval(timer)
 
-  }, [checkForColumnOfThree , checkForColumnOfFour , checkForRowOfThree , currentColorArrangement])
+  }, [checkForColumnOfThree , checkForColumnOfFour , checkForRowOfFour,  checkForRowOfThree , currentColorArrangement])
   
   // createBoard()
   console.log(currentColorArrangement)
