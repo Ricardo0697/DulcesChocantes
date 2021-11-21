@@ -14,7 +14,7 @@ const App = () => {
   }
   const checkForRowOfFour = () => {
     for (let i = 0; i < 40; i++) {
-      const rowOfFour = [i, i + 1, i + 2, 1 + 3]
+      const rowOfFour = [i, i + 1, i + 2, i + 3]
       const decidedColor = currentColorArrangement[i];
       const noValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 64, 65]
       if (noValid.includes(i)) continue
