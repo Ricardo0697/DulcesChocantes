@@ -61,6 +61,20 @@ const App = () => {
     }
   }
 
+  const dragStart = () =>{
+
+
+  }
+
+  const dragDrop = () =>{
+
+    
+  }
+  const dragEnd = () =>{
+
+    
+  }
+
   const createBoard = () => {
     // crea el random de colores en el arreglo por medio de los colores de la lista de candycolors
     const randomColorArrangement = [];
@@ -100,9 +114,12 @@ const App = () => {
             alt={candyColor}
             data-id={index}
             draggable={true}
+            onDragStart={dragStart}
             onDragOver={(e) => e.preventDefault()}
             onDragEnter={(e) => e.preventDefault()}
             onDragLeave= {(e) => e.preventDefault()}
+            onDrop={dragDrop}
+            onDragEnd={dragEnd}
           />
         ))}
       </div>
