@@ -74,7 +74,7 @@ const App = () => {
     }, 100);
     return () => clearInterval(timer)
 
-  }, [checkForColumnOfThree, checkForColumnOfFour, checkForRowOfFour, checkForRowOfThree, currentColorArrangement])
+  }, [checkForColumnOfFour, checkForRowOfFour, checkForColumnOfThree,  checkForRowOfThree, currentColorArrangement])
 
   return (
     <div className="App">
