@@ -4,7 +4,7 @@ const candyColors = ['blue', 'red', 'black', 'yellow', 'purple', 'orange', 'gree
 const App = () => {
   const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
   const checkForColumnOfFour = () => {
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3]
       const decidedColor = currentColorArrangement[i];
       if (columnOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
@@ -13,10 +13,10 @@ const App = () => {
     }
   }
   const checkForRowOfFour = () => {
-    for (let i = 0; i < 65; i++) {
+    for (let i = 0; i < 64; i++) {
       const rowOfFour = [i, i + 1, i + 2, i + 3]
       const decidedColor = currentColorArrangement[i];
-      const noValid = [5,6, 7,13, 14, 15, 22,21, 23,29, 30, 31, 38,37, 39,45, 46, 47,53, 54, 55,62, 64, 65]
+      const noValid = [5,6, 7,13, 14, 15, 22,21, 23,29, 30, 31, 38,37, 39,45, 46, 47,53, 54, 55,62, 64]
       if (noValid.includes(i)) continue
       if (rowOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
         rowOfFour.forEach(square => currentColorArrangement[square] = '')
@@ -24,7 +24,7 @@ const App = () => {
     }
   }
   const checkForRowOfThree = () => {
-    for (let i = 0; i < 65; i++) {
+    for (let i = 0; i < 64; i++) {
       const rowOfThree = [i, i + 1, i + 2]
       const decidedColor = currentColorArrangement[i];
       const noValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 64, 65]
@@ -36,7 +36,7 @@ const App = () => {
   }
 
   const checkForColumnOfThree = () => {
-    for (let i = 0; i < 48; i++) {
+    for (let i = 0; i < 47; i++) {
       const columnOfThree = [i, i + width, i + width * 2]
       const decidedColor = currentColorArrangement[i];
       if (columnOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
@@ -45,7 +45,21 @@ const App = () => {
     }
   }
 
-
+  const moveIntoSquereBelow = () => {
+    for(let i = 0 ; i< 64-width; i++){
+      const firtRow = [0 , 1 , 2 , 3 , 5 , 6 , 7];
+      const isfirstRow = firtRow.includes(i)
+      if(isfirstRow && currentColorArrangement[i] === ''){
+       let randomNumber =  Math.floor(Math.random() * candyColors.length)
+        currentColorArrangement[i] = candyColors[randomNumber]
+      
+      }
+      if(currentColorArrangement[i + width] === ''){
+          currentColorArrangement[i + width] = currentColorArrangement[i];
+          currentColorArrangement[i] = '';
+        }
+    }
+  }
 
   const createBoard = () => {
     // crea el random de colores en el arreglo por medio de los colores de la lista de candycolors
@@ -70,11 +84,12 @@ const App = () => {
       checkForRowOfFour()
       checkForColumnOfThree()
       checkForRowOfThree()
+      moveIntoSquereBelow()
       setCurrentColorArrangement([...currentColorArrangement])
     }, 100);
     return () => clearInterval(timer)
 
-  }, [checkForColumnOfFour, checkForRowOfFour, checkForColumnOfThree,  checkForRowOfThree, currentColorArrangement])
+  }, [checkForColumnOfFour, checkForRowOfFour, checkForColumnOfThree,  checkForRowOfThree, moveIntoSquereBelow, currentColorArrangement])
 
   return (
     <div className="App">
