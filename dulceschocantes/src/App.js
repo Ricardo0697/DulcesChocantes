@@ -13,10 +13,10 @@ const App = () => {
     }
   }
   const checkForRowOfFour = () => {
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 65; i++) {
       const rowOfFour = [i, i + 1, i + 2, i + 3]
       const decidedColor = currentColorArrangement[i];
-      const noValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 64, 65]
+      const noValid = [5,6, 7,13, 14, 15, 22,21, 23,29, 30, 31, 38,37, 39,45, 46, 47,53, 54, 55,62, 64, 65]
       if (noValid.includes(i)) continue
       if (rowOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
         rowOfFour.forEach(square => currentColorArrangement[square] = '')
@@ -67,9 +67,9 @@ const App = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       checkForColumnOfFour()
+      checkForRowOfFour()
       checkForColumnOfThree()
       checkForRowOfThree()
-      checkForRowOfFour()
       setCurrentColorArrangement([...currentColorArrangement])
     }, 100);
     return () => clearInterval(timer)
