@@ -3,8 +3,9 @@ const width = 8;
 const candyColors = ['blue', 'red', 'black', 'yellow', 'purple', 'orange', 'green', 'brown'];
 const App = () => {
   const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
+  const [squareBeibgDragged ,setSquareBeingSreagged] = useState(null);
   const checkForColumnOfFour = () => {
-    for (let i = 0; i < 39; i++) {
+    for (let i = 0; i <= 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3]
       const decidedColor = currentColorArrangement[i];
       if (columnOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
@@ -36,7 +37,7 @@ const App = () => {
   }
 
   const checkForColumnOfThree = () => {
-    for (let i = 0; i < 47; i++) {
+    for (let i = 0; i <= 47; i++) {
       const columnOfThree = [i, i + width, i + width * 2]
       const decidedColor = currentColorArrangement[i];
       if (columnOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
@@ -46,7 +47,7 @@ const App = () => {
   }
 
   const moveIntoSquereBelow = () => {
-    for(let i = 0 ; i< 64-width; i++){
+    for(let i = 0 ; i<= 55; i++){
       const firtRow = [0 , 1 , 2 , 3 , 5 , 6 , 7];
       const isfirstRow = firtRow.includes(i)
       if(isfirstRow && currentColorArrangement[i] === ''){
@@ -61,17 +62,25 @@ const App = () => {
     }
   }
 
-  const dragStart = () =>{
+  const dragStart = (e) =>{
+console.log(e.target);
+    console.log('Drag Start');
+
 
 
   }
 
-  const dragDrop = () =>{
+  const dragDrop = (e) =>{
+console.log(e.target);
+
+    console.log('Drag drop');
 
     
   }
-  const dragEnd = () =>{
+  const dragEnd = (e) =>{
+    console.log(e.target);
 
+    console.log('Drag End');
     
   }
 
