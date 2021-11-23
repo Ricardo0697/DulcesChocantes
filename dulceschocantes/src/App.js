@@ -92,8 +92,9 @@ const App = () => {
     
 
     console.log('Drag End');
-    const squareBeingDraggedId =  parseInt(setSquareBeingDragged.getAtrribute('data-id'))
-    const squareBeingRepleacedId =  parseInt(setSquareBeingReplaced.getAtrribute('data-id'))
+
+    const squareBeingDraggedId =  parseInt(squareBeibgDragged.getAttribute('data-id'))
+    const squareBeingRepleacedId =  parseInt(squareBeingReplaced.getAttribute('data-id'))
     
     currentColorArrangement[squareBeingRepleacedId] = squareBeibgDragged.style.backgroundColor
     currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.style.backgroundColor
@@ -111,7 +112,18 @@ const App = () => {
     const isAColumnOfThree =  checkForColumnOfThree()
     const isARowOfThree = checkForRowOfThree()
     
+    if(squareBeingRepleacedId && 
+      validMove && 
+      (isAColumnOfFour || isARowOfFour || isAColumnOfThree || isARowOfThree )){
+        setSquareBeingDragged(null)
+        setSquareBeingReplaced(null)
+      }else{
+        currentColorArrangement[squareBeingRepleacedId] = squareBeingReplaced.style.backgroundColor
+        currentColorArrangement[squareBeingDraggedId] = squareBeibgDragged.style.backgroundColor
+        setCurrentColorArrangement([...currentColorArrangement])
 
+      }
+    
   }
 
   const createBoard = () => {
