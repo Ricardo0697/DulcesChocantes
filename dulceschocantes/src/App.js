@@ -5,15 +5,21 @@ const App = () => {
   const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
   const [squareBeibgDragged ,setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced ,setSquareBeingReplaced] = useState(null);
+  
+  
+  
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3]
       const decidedColor = currentColorArrangement[i];
       if (columnOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
         columnOfFour.forEach(square => currentColorArrangement[square] = '')
+        return true
       }
     }
   }
+  
+  
   const checkForRowOfFour = () => {
     for (let i = 0; i < 64; i++) {
       const rowOfFour = [i, i + 1, i + 2, i + 3]
@@ -22,9 +28,13 @@ const App = () => {
       if (noValid.includes(i)) continue
       if (rowOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
         rowOfFour.forEach(square => currentColorArrangement[square] = '')
+        return true
       }
     }
   }
+  
+  
+  
   const checkForRowOfThree = () => {
     for (let i = 0; i < 64; i++) {
       const rowOfThree = [i, i + 1, i + 2]
@@ -33,6 +43,7 @@ const App = () => {
       if (noValid.includes(i)) continue
       if (rowOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
         rowOfThree.forEach(square => currentColorArrangement[square] = '')
+        return true
       }
     }
   }
@@ -43,6 +54,7 @@ const App = () => {
       const decidedColor = currentColorArrangement[i];
       if (columnOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
         columnOfThree.forEach(square => currentColorArrangement[square] = '')
+        return true
       }
     }
   }
@@ -93,6 +105,12 @@ const App = () => {
       squareBeingDraggedId + width
     ]
     const validMove = validMoves.includes(squareBeingRepleacedId)
+
+    const isAColumnOfFour = checkForColumnOfFour()
+    const isARowOfFour =  checkForRowOfFour()
+    const isAColumnOfThree =  checkForColumnOfThree()
+    const isARowOfThree = checkForRowOfThree()
+    
 
   }
 
