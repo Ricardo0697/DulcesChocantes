@@ -121,7 +121,7 @@ const App = () => {
         currentColorArrangement[squareBeingRepleacedId] = squareBeingReplaced.style.backgroundColor
         currentColorArrangement[squareBeingDraggedId] = squareBeibgDragged.style.backgroundColor
         setCurrentColorArrangement([...currentColorArrangement])
-
+        
       }
     
   }
