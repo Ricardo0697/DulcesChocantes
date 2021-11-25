@@ -21,7 +21,7 @@ const App = () => {
   
   
   const checkForRowOfFour = () => {
-    for (let i = 0; i < 64; i++) {
+    for (let i = 0; i <= 64; i++) {
       const rowOfFour = [i, i + 1, i + 2, i + 3]
       const decidedColor = currentColorArrangement[i];
       const noValid = [5,6, 7,13, 14, 15, 22,21, 23,29, 30, 31, 38,37, 39,45, 46, 47,53, 54, 55,62, 64]
@@ -36,10 +36,10 @@ const App = () => {
   
   
   const checkForRowOfThree = () => {
-    for (let i = 0; i < 64; i++) {
+    for (let i = 0; i <= 64; i++) {
       const rowOfThree = [i, i + 1, i + 2]
       const decidedColor = currentColorArrangement[i];
-      const noValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 64, 65]
+      const noValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 64]
       if (noValid.includes(i)) continue
       if (rowOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
         rowOfThree.forEach(square => currentColorArrangement[square] = '')
@@ -82,7 +82,7 @@ const App = () => {
   }
 
   const dragDrop = (e) =>{
-
+    console.log(e);
 
     console.log('Drag drop');
     setSquareBeingReplaced(e.target)
@@ -129,10 +129,12 @@ const App = () => {
   const createBoard = () => {
     // crea el random de colores en el arreglo por medio de los colores de la lista de candycolors
     const randomColorArrangement = [];
-    for (let i = 0; i <= width * width; i++) {
-
+    for (let i = 0; i <= 63; i++) {
+      console.log(width * width);
       const randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
+      console.log('randomColor' , randomColor)
       randomColorArrangement.push(randomColor);
+      console.log('random Color Arrangement ',randomColorArrangement.length)
 
     }
     setCurrentColorArrangement(randomColorArrangement)
