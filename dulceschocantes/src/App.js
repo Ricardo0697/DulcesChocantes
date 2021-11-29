@@ -158,31 +158,32 @@ const App = () => {
 
     }, [checkForColumnOfFour, checkForRowOfFour, checkForColumnOfThree, checkForRowOfThree, moveIntoSquereBelow, currentColorArrangement])
 
-    return ( <
-        div className = "App" >
+    return ( < div className = "App" >
         <
         div className = "game" > {
             currentColorArrangement.map((candyColor, index) => ( <
                 img key = { index }
                 style = {
-                    { backgroundColor: candyColor } }
+                    { backgroundColor: candyColor }
+                }
                 alt = { candyColor }
                 data - id = { index }
                 draggable = { true }
                 onDragStart = { dragStart }
                 onDragOver = {
-                    (e) => e.preventDefault() }
+                    (e) => e.preventDefault()
+                }
                 onDragEnter = {
-                    (e) => e.preventDefault() }
+                    (e) => e.preventDefault()
+                }
                 onDragLeave = {
-                    (e) => e.preventDefault() }
+                    (e) => e.preventDefault()
+                }
                 onDrop = { dragDrop }
                 onDragEnd = { dragEnd }
                 />
             ))
-        } <
-        /div> <
-        /div>
+        } < /div> </div >
     );
 }
 
