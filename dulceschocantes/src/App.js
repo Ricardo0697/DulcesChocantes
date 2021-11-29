@@ -115,6 +115,7 @@ const App = () => {
         if (squareBeingRepleacedId &&
             validMove &&
             (isAColumnOfFour || isARowOfFour || isAColumnOfThree || isARowOfThree)) {
+            setPointCandy(5)
             setSquareBeingDragged(null)
             setSquareBeingReplaced(null)
         } else {
@@ -138,8 +139,8 @@ const App = () => {
 
         }
         setCurrentColorArrangement(randomColorArrangement)
-            // mustra el codigo de colores que toca en la partida 
-            // console.log(randomColorArrangement);
+        // mustra el codigo de colores que toca en la partida 
+        // console.log(randomColorArrangement);
     }
     useEffect(() => {
         createBoard()
@@ -158,32 +159,33 @@ const App = () => {
 
     }, [checkForColumnOfFour, checkForRowOfFour, checkForColumnOfThree, checkForRowOfThree, moveIntoSquereBelow, currentColorArrangement])
 
-    return ( < div className = "App" >
-        <
-        div className = "game" > {
-            currentColorArrangement.map((candyColor, index) => ( <
-                img key = { index }
-                style = {
+    return (<div className="App" >
+        <div className="game" > {
+            currentColorArrangement.map((candyColor, index) => (<
+                img key={index}
+                style={
                     { backgroundColor: candyColor }
                 }
-                alt = { candyColor }
-                data - id = { index }
-                draggable = { true }
-                onDragStart = { dragStart }
-                onDragOver = {
+                alt={candyColor}
+                data-id={index}
+                draggable={true}
+                onDragStart={dragStart}
+                onDragOver={
                     (e) => e.preventDefault()
                 }
-                onDragEnter = {
+                onDragEnter={
                     (e) => e.preventDefault()
                 }
-                onDragLeave = {
+                onDragLeave={
                     (e) => e.preventDefault()
                 }
-                onDrop = { dragDrop }
-                onDragEnd = { dragEnd }
-                />
+                onDrop={dragDrop}
+                onDragEnd={dragEnd}
+            />
             ))
-        } < /div> </div >
+        }
+        </div>
+    </div>
     );
 }
 
