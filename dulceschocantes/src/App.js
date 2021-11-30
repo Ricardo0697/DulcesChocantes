@@ -155,11 +155,9 @@ const App = () => {
 
         }
         setCurrentColorArrangement(randomColorArrangement)
-        // mustra el codigo de colores que toca en la partida 
-        // console.log(randomColorArrangement);
     }
 
-    
+
     useEffect(() => {
         createBoard()
     }, [])
