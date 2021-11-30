@@ -6,6 +6,7 @@ import purpleCandy from './images/purple-candy.png'
 import redCandy from './images/red-candy.png'
 import yellowCandy from './images/yellow-candy.png'
 import blank from './images/blank.png'
+import ScoreBoard from './componets/ScoreBoard.js'
 
 const width = 8;
 const candyColors = [
@@ -21,7 +22,7 @@ const App = () => {
     const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
     const [squareBeibgDragged, setSquareBeingDragged] = useState(null);
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
-
+    const [scoreDisplay, setScoreDisplay] = useState(0)
 
 
     const checkForColumnOfFour = () => {
@@ -29,6 +30,7 @@ const App = () => {
             const columnOfFour = [i, i + width, i + width * 2, i + width * 3]
             const decidedColor = currentColorArrangement[i];
             if (columnOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
+                setScoreDisplay((score) => score + 4)
                 columnOfFour.forEach(square => currentColorArrangement[square] = '')
                 return true
             }
@@ -43,6 +45,7 @@ const App = () => {
             const noValid = [5, 6, 7, 13, 14, 15, 22, 21, 23, 29, 30, 31, 38, 37, 39, 45, 46, 47, 53, 54, 55, 62, 64]
             if (noValid.includes(i)) continue
             if (rowOfFour.every(square => currentColorArrangement[square] === decidedColor)) {
+                setScoreDisplay((score) => score + 4)
                 rowOfFour.forEach(square => currentColorArrangement[square] = '')
                 return true
             }
@@ -51,6 +54,20 @@ const App = () => {
 
 
 
+    
+
+    const checkForColumnOfThree = () => {
+        for (let i = 0; i <= 47; i++) {
+            const columnOfThree = [i, i + width, i + width * 2]
+            const decidedColor = currentColorArrangement[i];
+            if (columnOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
+                setScoreDisplay((score) => score + 3)
+                columnOfThree.forEach(square => currentColorArrangement[square] = '')
+                return true
+            }
+        }
+    }
+    
     const checkForRowOfThree = () => {
         for (let i = 0; i <= 64; i++) {
             const rowOfThree = [i, i + 1, i + 2]
@@ -58,24 +75,14 @@ const App = () => {
             const noValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 64]
             if (noValid.includes(i)) continue
             if (rowOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
+                setScoreDisplay((score) => score + 3)
                 rowOfThree.forEach(square => currentColorArrangement[square] = '')
                 return true
             }
         }
     }
 
-    const checkForColumnOfThree = () => {
-        for (let i = 0; i <= 47; i++) {
-            const columnOfThree = [i, i + width, i + width * 2]
-            const decidedColor = currentColorArrangement[i];
-            if (columnOfThree.every(square => currentColorArrangement[square] === decidedColor)) {
-                columnOfThree.forEach(square => currentColorArrangement[square] = '')
-                return true
-            }
-        }
-    }
-
-    const moveIntoSquereBelow = () => {
+    const moveIntoSquareBelow = () => {
         for (let i = 0; i <= 55; i++) {
             const firtRow = [0, 1, 2, 3, 5, 6, 7];
             const isfirstRow = firtRow.includes(i)
@@ -168,12 +175,11 @@ const App = () => {
             checkForRowOfFour()
             checkForColumnOfThree()
             checkForRowOfThree()
-            moveIntoSquereBelow()
+            moveIntoSquareBelow()
             setCurrentColorArrangement([...currentColorArrangement])
-        }, 100);
+        }, 100)
         return () => clearInterval(timer)
-
-    }, [checkForColumnOfFour, checkForRowOfFour, checkForColumnOfThree, checkForRowOfThree, moveIntoSquereBelow, currentColorArrangement])
+    }, [checkForColumnOfFour, checkForRowOfFour, checkForColumnOfThree, checkForRowOfThree, moveIntoSquareBelow, currentColorArrangement])
 
     return (
         <div className="App">
@@ -194,7 +200,7 @@ const App = () => {
                 />
             ))}
         </div>
-        {/* <ScoreBoard score={scoreDisplay}/> */}
+        <ScoreBoard score={scoreDisplay}/>
     </div>
     );
 }
