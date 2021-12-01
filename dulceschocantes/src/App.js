@@ -7,7 +7,7 @@ import redCandy from './images/red-candy.png'
 import yellowCandy from './images/yellow-candy.png'
 import blank from './images/blank.png'
 import ScoreBoard from './componets/ScoreBoard.js'
-
+import Moves from './componets/moves.js'
 const width = 8;
 const candyColors = [
     blueCandy,
@@ -23,6 +23,7 @@ const App = () => {
     const [squareBeingDragged, setSquareBeingDragged] = useState(null);
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
     const [scoreDisplay, setScoreDisplay] = useState(0)
+    const [movesStep , setMovesStep] = useState(0)  
 
 
     const checkForColumnOfFour = () => {
@@ -111,12 +112,13 @@ const App = () => {
         setSquareBeingReplaced(e.target)
     }
     const dragEnd = () => {
+
         const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute('data-id'))
         const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute('data-id'))
 
         currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
         currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
-
+        setMovesStep((moves) => moves + 1)
         const validMoves = [
             squareBeingDraggedId - 1,
             squareBeingDraggedId - width,
@@ -194,6 +196,7 @@ const App = () => {
             ))}
         </div>
         <ScoreBoard score={scoreDisplay}/>
+        <Moves moves={movesStep}></Moves>
     </div>
     );
 }
