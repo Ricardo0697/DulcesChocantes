@@ -110,6 +110,7 @@ const App = () => {
     }
     const dragDrop = (e) => {
         setSquareBeingReplaced(e.target)
+        
     }
     const dragEnd = () => {
 
@@ -118,7 +119,7 @@ const App = () => {
 
         currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
         currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
-        setMovesStep((moves) => moves + 1)
+        
         const validMoves = [
             squareBeingDraggedId - 1,
             squareBeingDraggedId - width,
@@ -136,6 +137,7 @@ const App = () => {
         if (squareBeingReplacedId &&
             validMove &&
             (isARowOfThree || isARowOfFour || isAColumnOfFour || isAColumnOfThree)) {
+            setMovesStep((moves) => moves + 1)
             setSquareBeingDragged(null)
             setSquareBeingReplaced(null)
         } else {
