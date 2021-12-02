@@ -23,7 +23,7 @@ const App = () => {
     const [squareBeingDragged, setSquareBeingDragged] = useState(null);
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
     const [scoreDisplay, setScoreDisplay] = useState(0)
-    const [movesStep , setMovesStep] = useState(0)  
+    const [movesStep, setMovesStep] = useState(0)
 
 
     const checkForColumnOfFour = () => {
@@ -110,7 +110,7 @@ const App = () => {
     }
     const dragDrop = (e) => {
         setSquareBeingReplaced(e.target)
-        
+
     }
     const dragEnd = () => {
 
@@ -119,7 +119,7 @@ const App = () => {
 
         currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
         currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
-        
+
         const validMoves = [
             squareBeingDraggedId - 1,
             squareBeingDraggedId - width,
@@ -180,26 +180,26 @@ const App = () => {
 
     return (
         <div className="App">
-        <div className="game">
-            {currentColorArrangement.map((candyColor, index) => (
-                <img
-                    key={index}
-                    src={candyColor}
-                    alt={candyColor}
-                    data-id={index}
-                    draggable={true}
-                    onDragStart={dragStart}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDragEnter={(e) => e.preventDefault()}
-                    onDragLeave={(e) => e.preventDefault()}
-                    onDrop={dragDrop}
-                    onDragEnd={dragEnd}
-                />
-            ))}
+            <div className="game">
+                {currentColorArrangement.map((candyColor, index) => (
+                    <img
+                        key={index}
+                        src={candyColor}
+                        alt={candyColor}
+                        data-id={index}
+                        draggable={true}
+                        onDragStart={dragStart}
+                        onDragOver={(e) => e.preventDefault()}
+                        onDragEnter={(e) => e.preventDefault()}
+                        onDragLeave={(e) => e.preventDefault()}
+                        onDrop={dragDrop}
+                        onDragEnd={dragEnd}
+                    />
+                ))}
+            </div>
+            <ScoreBoard score={scoreDisplay} />
+            <Moves moves={movesStep}></Moves>
         </div>
-        <ScoreBoard score={scoreDisplay}/>
-        <Moves moves={movesStep}></Moves>
-    </div>
     );
 }
 
