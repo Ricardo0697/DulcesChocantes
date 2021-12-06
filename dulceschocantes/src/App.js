@@ -23,7 +23,7 @@ const App = () => {
     const [squareBeingDragged, setSquareBeingDragged] = useState(null);
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
     const [scoreDisplay, setScoreDisplay] = useState(0)
-    const [movesStep, setMovesStep] = useState(0)
+    const [movesStep, setMovesStep] = useState(50)
 
 
     const checkForColumnOfFour = () => {
@@ -113,10 +113,11 @@ const App = () => {
 
     }
     const dragEnd = () => {
-
+        const movesStep = setMovesStep((moves) => moves - 1)
+      
         const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute('data-id'))
         const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute('data-id'))
-
+        
         currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
         currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
 
@@ -137,7 +138,7 @@ const App = () => {
         if (squareBeingReplacedId &&
             validMove &&
             (isARowOfThree || isARowOfFour || isAColumnOfFour || isAColumnOfThree)) {
-            setMovesStep((moves) => moves + 1)
+            
             setSquareBeingDragged(null)
             setSquareBeingReplaced(null)
         } else {
