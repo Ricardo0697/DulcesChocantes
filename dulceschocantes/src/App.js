@@ -114,41 +114,37 @@ const App = () => {
     }
     const dragEnd = () => {
         const movesStep = setMovesStep((moves) => moves - 1)
-        if (movesStep != 0) {
-            const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute('data-id'))
-            const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute('data-id'))
+        
+        const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute('data-id'))
+        const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute('data-id'))
+        
+        currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
+        currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
 
-            currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
-            currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
+        const validMoves = [
+            squareBeingDraggedId - 1,
+            squareBeingDraggedId - width,
+            squareBeingDraggedId + 1,
+            squareBeingDraggedId + width
+        ]
 
-            const validMoves = [
-                squareBeingDraggedId - 1,
-                squareBeingDraggedId - width,
-                squareBeingDraggedId + 1,
-                squareBeingDraggedId + width
-            ]
+        const validMove = validMoves.includes(squareBeingReplacedId)
 
-            const validMove = validMoves.includes(squareBeingReplacedId)
+        const isAColumnOfFour = checkForColumnOfFour()
+        const isARowOfFour = checkForRowOfFour()
+        const isAColumnOfThree = checkForColumnOfThree()
+        const isARowOfThree = checkForRowOfThree()
 
-            const isAColumnOfFour = checkForColumnOfFour()
-            const isARowOfFour = checkForRowOfFour()
-            const isAColumnOfThree = checkForColumnOfThree()
-            const isARowOfThree = checkForRowOfThree()
-
-            if (squareBeingReplacedId &&
-                validMove &&
-                (isARowOfThree || isARowOfFour || isAColumnOfFour || isAColumnOfThree)) {
-
-                setSquareBeingDragged(null)
-                setSquareBeingReplaced(null)
-            } else {
-                currentColorArrangement[squareBeingReplacedId] = squareBeingReplaced.getAttribute('src')
-                currentColorArrangement[squareBeingDraggedId] = squareBeingDragged.getAttribute('src')
-                setCurrentColorArrangement([...currentColorArrangement])
-            }
-        }
-        else {
-
+        if (squareBeingReplacedId &&
+            validMove &&
+            (isARowOfThree || isARowOfFour || isAColumnOfFour || isAColumnOfThree)) {
+            
+            setSquareBeingDragged(null)
+            setSquareBeingReplaced(null)
+        } else {
+            currentColorArrangement[squareBeingReplacedId] = squareBeingReplaced.getAttribute('src')
+            currentColorArrangement[squareBeingDraggedId] = squareBeingDragged.getAttribute('src')
+            setCurrentColorArrangement([...currentColorArrangement])
         }
     }
 
