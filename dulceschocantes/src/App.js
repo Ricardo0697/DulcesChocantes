@@ -114,37 +114,41 @@ const App = () => {
     }
     const dragEnd = () => {
         const movesStep = setMovesStep((moves) => moves - 1)
-      
-        const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute('data-id'))
-        const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute('data-id'))
-        
-        currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
-        currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
+        if (movesStep != 0) {
+            const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute('data-id'))
+            const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute('data-id'))
 
-        const validMoves = [
-            squareBeingDraggedId - 1,
-            squareBeingDraggedId - width,
-            squareBeingDraggedId + 1,
-            squareBeingDraggedId + width
-        ]
+            currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
+            currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
 
-        const validMove = validMoves.includes(squareBeingReplacedId)
+            const validMoves = [
+                squareBeingDraggedId - 1,
+                squareBeingDraggedId - width,
+                squareBeingDraggedId + 1,
+                squareBeingDraggedId + width
+            ]
 
-        const isAColumnOfFour = checkForColumnOfFour()
-        const isARowOfFour = checkForRowOfFour()
-        const isAColumnOfThree = checkForColumnOfThree()
-        const isARowOfThree = checkForRowOfThree()
+            const validMove = validMoves.includes(squareBeingReplacedId)
 
-        if (squareBeingReplacedId &&
-            validMove &&
-            (isARowOfThree || isARowOfFour || isAColumnOfFour || isAColumnOfThree)) {
-            
-            setSquareBeingDragged(null)
-            setSquareBeingReplaced(null)
-        } else {
-            currentColorArrangement[squareBeingReplacedId] = squareBeingReplaced.getAttribute('src')
-            currentColorArrangement[squareBeingDraggedId] = squareBeingDragged.getAttribute('src')
-            setCurrentColorArrangement([...currentColorArrangement])
+            const isAColumnOfFour = checkForColumnOfFour()
+            const isARowOfFour = checkForRowOfFour()
+            const isAColumnOfThree = checkForColumnOfThree()
+            const isARowOfThree = checkForRowOfThree()
+
+            if (squareBeingReplacedId &&
+                validMove &&
+                (isARowOfThree || isARowOfFour || isAColumnOfFour || isAColumnOfThree)) {
+
+                setSquareBeingDragged(null)
+                setSquareBeingReplaced(null)
+            } else {
+                currentColorArrangement[squareBeingReplacedId] = squareBeingReplaced.getAttribute('src')
+                currentColorArrangement[squareBeingDraggedId] = squareBeingDragged.getAttribute('src')
+                setCurrentColorArrangement([...currentColorArrangement])
+            }
+        }
+        else {
+
         }
     }
 
