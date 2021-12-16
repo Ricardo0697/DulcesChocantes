@@ -25,11 +25,11 @@
 .styleMove {
   height: 74px;
   position: relative;
-  right: 199px;
+  right: 211px;
   top: 80px;
   background: rgb(0, 112, 211);
-  padding-left: 70px;
-  padding-right: 45px;
+  padding-left: 59px;
+  padding-right: 56px;
   border-radius: 10px;
   color: white;
 }
