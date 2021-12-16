@@ -159,9 +159,9 @@ const App = () => {
         for (let i = 0; i <= 63; i++) {
             console.log(width * width);
             const randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
-            console.log('randomColor', randomColor)
+            // console.log('randomColor', randomColor)
             randomColorArrangement.push(randomColor);
-            console.log('random Color Arrangement ', randomColorArrangement.length)
+            // console.log('random Color Arrangement ', randomColorArrangement.length)
 
         }
         setCurrentColorArrangement(randomColorArrangement)
