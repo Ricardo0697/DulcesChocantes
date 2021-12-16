@@ -134,7 +134,12 @@ const App = () => {
         const isARowOfFour = checkForRowOfFour()
         const isAColumnOfThree = checkForColumnOfThree()
         const isARowOfThree = checkForRowOfThree()
-
+        if(isAColumnOfFour && isARowOfFour){
+            console.log('combo');
+        }
+        if(isAColumnOfThree && isAColumnOfThree){
+            console.log('combo 2');
+        }
         if (squareBeingReplacedId &&
             validMove &&
             (isARowOfThree || isARowOfFour || isAColumnOfFour || isAColumnOfThree)) {
