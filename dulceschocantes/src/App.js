@@ -17,7 +17,7 @@ const candyColors = [
     yellowCandy,
     greenCandy
 ]
-// const candyColors = ['blue', 'red', 'black', 'yellow', 'purple', 'orange', 'green', 'brown'];
+
 const App = () => {
     const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
     const [squareBeingDragged, setSquareBeingDragged] = useState(null);
@@ -114,10 +114,10 @@ const App = () => {
     }
     const dragEnd = () => {
         const movesStep = setMovesStep((moves) => moves - 1)
-        
+
         const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute('data-id'))
         const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute('data-id'))
-        
+
         currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute('src')
         currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute('src')
 
@@ -138,7 +138,7 @@ const App = () => {
         if (squareBeingReplacedId &&
             validMove &&
             (isARowOfThree || isARowOfFour || isAColumnOfFour || isAColumnOfThree)) {
-            
+
             setSquareBeingDragged(null)
             setSquareBeingReplaced(null)
         } else {
