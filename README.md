@@ -1,5 +1,3 @@
-# DulcesChocantes 
- es un videjuego con la meta de generar la mayor puntuacion realizando combinaciones de caramelos para explotarlos y de esa manera generando mejor puntuacion 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
